@@ -28,7 +28,7 @@ Route::auth();
 
 //web接口群组
 Route::group(array('prefix'=>'web','namespace'=>'Web'),function(){
-    Route::get('/', function () {
-        dd('web');
-    });
+    Route::get('/activity', 'WebApiController@activity');
+    Route::get('/qrcode', 'WebApiController@qrcode');
+    Route::get('/quotations', 'WebApiController@quotations');
 });

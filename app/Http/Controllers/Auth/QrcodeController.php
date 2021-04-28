@@ -19,6 +19,6 @@ class QrcodeController extends Controller
 
     public function index()
     {
-        return response()->json($this->qrcode_logic->getListForWeb());
+        return response()->json($this->qrcode_logic->getOneForWeb());
     }
 }

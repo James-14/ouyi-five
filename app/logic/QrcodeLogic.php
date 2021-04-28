@@ -12,8 +12,8 @@ class QrcodeLogic
     const STATUS_NO = 1;
     const STATUS_YES = 2;
 
-    public function getListForWeb()
+    public function getOneForWeb()
     {
-        return Qrcode::where('status', '=', self::STATUS_YES)->limit(3)->orderBy("id", "desc")->get();
+        return Qrcode::where('status', '=', self::STATUS_YES)->limit(1)->orderBy("id", "desc")->get();
     }
 }

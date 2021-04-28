@@ -14,6 +14,6 @@ class ActivityLogic
 
     public function getListForWeb()
     {
-        return Activity::where('status', '=', self::STATUS_YES)->limit(3)->orderBy("id", "desc")->get();
+        return Activity::where('status', '=', self::STATUS_YES)->orderBy("orderly", "asc")->paginate(10);
     }
 }

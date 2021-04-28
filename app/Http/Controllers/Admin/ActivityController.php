@@ -21,4 +21,17 @@ class ActivityController extends Controller
     {
         return response()->json($this->activity_logic->getListForWeb());
     }
+
+    public function create(array $data)
+    {
+/*
+ * User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
+ */
+
+
+    }
 }
