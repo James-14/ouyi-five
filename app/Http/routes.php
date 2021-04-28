@@ -11,6 +11,24 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+use Illuminate\Support\Facades\Route;
+
+
+
+//后端路由群组
+Route::group(array('prefix'=>'admin','namespace'=>'Admin','middleware' =>'auth'),function(){
+    Route::get('/qrcode', 'QrcodeController@index');
+
+    Route::get('/activity', 'ActivityController@index');
+});
+
+
+Route::auth();
+
+//web接口群组
+Route::group(array('prefix'=>'web','namespace'=>'Web'),function(){
+    Route::get('/', function () {
+        dd('web');
+    });
 });
