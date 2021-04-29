@@ -8,7 +8,7 @@ class Activity extends Model
 {
     public $table='activity';
     protected $fillable = [
-        'id','title', 'imgurl', 'status','orderly'
+        'id','title', 'imgurl', 'status','orderly','jumplink'
     ];
 
     protected $hidden = [

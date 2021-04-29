@@ -21,7 +21,9 @@ class WebApiController extends Controller
 
     public function activity()
     {
-        return response()->json($this->activity_logic->getListForWeb());
+        $infoList=$this->activity_logic->getListForWeb();
+
+        return response()->result($infoList);
     }
 
     public function qrcode()
