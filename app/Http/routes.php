@@ -26,7 +26,7 @@ Route::group(array('prefix'=>'admin','namespace'=>'Admin','middleware' =>'auth')
 Route::auth();
 
 //web接口群组
-Route::group(array('prefix'=>'web','namespace'=>'Web'),function(){
+Route::group(array('prefix'=>'api','namespace'=>'Web'),function(){
     Route::get('/activity', 'WebApiController@activity');
     Route::get('/qrcode', 'WebApiController@qrcode');
     Route::get('/quotations', 'WebApiController@quotations');
