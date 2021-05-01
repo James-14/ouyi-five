@@ -10,6 +10,9 @@ class CoinConst
     const OKT = 'OKT';
     const LTC = 'LTC';
     const DOT = 'DOT';
+    const DOGE = 'DOGE';
+
+    const COIN_SUFFIX = 'USDT';
 
 
     public static $coin_types = [
@@ -19,8 +22,6 @@ class CoinConst
         self::OKT,
         self::LTC,
         self::DOT,
+        self::DOGE,
     ];
-
-    //文件缓存时间，单位：分钟
-    const CACHE_EPX_TIME = 10;
 }

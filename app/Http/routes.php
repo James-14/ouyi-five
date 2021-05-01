@@ -27,7 +27,20 @@ Route::auth();
 
 //web接口群组
 Route::group(array('prefix'=>'api','namespace'=>'Web'),function(){
+    //活动
     Route::get('/activity', 'WebApiController@activity');
-    Route::get('/qrcode', 'WebApiController@qrcode');
-    Route::get('/quotations', 'WebApiController@quotations');
+
+    //获取二维码和跳转地址
+    Route::get('/common', 'WebApiController@common');
+
+    //主流币
+    Route::get('/mainstream', 'WebApiController@mainstream');
+
+    //涨幅榜
+    Route::get('/upDown', 'WebApiController@upDown');
+
+    //成交额榜
+    Route::get('/volume', 'WebApiController@volume');
+
+
 });

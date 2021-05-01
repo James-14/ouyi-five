@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-         \App\Console\Commands\Ticker::class,
+         \App\Console\Commands\TickerConsole::class,
     ];
 
     /**
