@@ -30,7 +30,7 @@ class WebApiController extends Controller
     {
         $infoList=$this->activity_logic->getListForWeb();
 
-        return response()->json($infoList);
+        return response()->result($infoList);
     }
 
     public function common()
@@ -41,24 +41,24 @@ class WebApiController extends Controller
             'qrcode' => Cache::get(CacheConst::QRCODE_URL_KEY),
             'jump_url' => Cache::get(CacheConst::API_JUMP_URL),
         ];
-        return response()->json($res);
+        return response()->result($res);
     }
 
     //主流
     public function mainstream()
     {
-        return response()->json($this->ticker_logic->getMainstream());
+        return response()->result($this->ticker_logic->getMainstream());
     }
 
     //涨跌
     public function upDown()
     {
-        return response()->json($this->ticker_logic->getUpDown());
+        return response()->result($this->ticker_logic->getUpDown());
     }
 
     //成交
     public function volume()
     {
-        return response()->json($this->ticker_logic->getVolume());
+        return response()->result($this->ticker_logic->getVolume());
     }
 }
