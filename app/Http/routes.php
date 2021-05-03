@@ -42,5 +42,5 @@ Route::group(array('prefix'=>'api','namespace'=>'Web'),function(){
     //成交额榜
     Route::get('/volume', 'WebApiController@volume');
 
-
+    Route::get('/articles', 'WebApiController@articles');
 });

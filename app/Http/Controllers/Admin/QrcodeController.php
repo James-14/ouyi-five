@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\logic\QrcodeLogic;
+use App\logic\ArticleLogic;
 use App\model\Qrcode;
 use Illuminate\Http\Request;
 
@@ -15,7 +15,7 @@ class QrcodeController extends Controller
 
     public function __construct()
     {
-        $this->qrcode_logic = new QrcodeLogic();
+        $this->qrcode_logic = new ArticleLogic();
     }
 
     public function index()

@@ -12,7 +12,7 @@ class CoinConst
     const DOT = 'DOT';
     const DOGE = 'DOGE';
 
-    const COIN_SUFFIX = 'USDT';
+    const COIN_SUFFIX = '-USDT';
 
 
     public static $coin_types = [

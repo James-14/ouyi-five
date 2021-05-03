@@ -67,27 +67,46 @@ class TickerConsole extends Command
 
             //计算幅度
             $up_down = ($value['open_utc8'] - $value['last']) / $value['last'] ;
-
-            $dao = Ticker::firstOrCreate([
-                'instrument_id' => $value['instrument_id'],
-                'last' => $value['last'],
-                'last_qty' => $value['last_qty'],
-                'best_ask' => $value['best_ask'],
-                'best_ask_size' => $value['best_ask_size'],
-                'best_bid' => $value['best_bid'],
-                'best_bid_size' => $value['best_bid_size'],
-                'open_24h' => $value['open_24h'],
-                'high_24h' => $value['high_24h'],
-                'low_24h' => $value['low_24h'],
-                'base_volume_24h' => $value['base_volume_24h'],
-                'quote_volume_24h' => $value['quote_volume_24h'],
-                'timestamp' => $value['timestamp'],
-                'open_utc0' => $value['open_utc0'],
-                'open_utc8' => $value['open_utc8'],
-            ]);
+            $dao = Ticker::where('instrument_id', $value['instrument_id'])->first();
+            if (!$dao['id']) {
+                $dao = Ticker::insert([
+                    'instrument_id' => $value['instrument_id'],
+                    'last' => $value['last'],
+                    'last_qty' => $value['last_qty'],
+                    'best_ask' => $value['best_ask'],
+                    'best_ask_size' => $value['best_ask_size'],
+                    'best_bid' => $value['best_bid'],
+                    'best_bid_size' => $value['best_bid_size'],
+                    'open_24h' => $value['open_24h'],
+                    'high_24h' => $value['high_24h'],
+                    'low_24h' => $value['low_24h'],
+                    'base_volume_24h' => $value['base_volume_24h'],
+                    'quote_volume_24h' => $value['quote_volume_24h'],
+                    'timestamp' => $value['timestamp'],
+                    'open_utc0' => $value['open_utc0'],
+                    'open_utc8' => $value['open_utc8'],
+                ]);
+            }
             //更新涨幅
             Ticker::where('id', $dao['id'])->update(
-                ['up_down' => sprintf("%.2f",$up_down * 100)]
+                [
+                    'instrument_id' => $value['instrument_id'],
+                    'last' => $value['last'],
+                    'last_qty' => $value['last_qty'],
+                    'best_ask' => $value['best_ask'],
+                    'best_ask_size' => $value['best_ask_size'],
+                    'best_bid' => $value['best_bid'],
+                    'best_bid_size' => $value['best_bid_size'],
+                    'open_24h' => $value['open_24h'],
+                    'high_24h' => $value['high_24h'],
+                    'low_24h' => $value['low_24h'],
+                    'base_volume_24h' => $value['base_volume_24h'],
+                    'quote_volume_24h' => $value['quote_volume_24h'],
+                    'timestamp' => $value['timestamp'],
+                    'open_utc0' => $value['open_utc0'],
+                    'open_utc8' => $value['open_utc8'],
+                    'up_down' => sprintf("%.2f",$up_down * 100),
+                ]
             );
 
         }

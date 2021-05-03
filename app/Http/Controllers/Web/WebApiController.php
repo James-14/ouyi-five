@@ -8,22 +8,23 @@ use App\Enums\CacheConst;
 use App\Enums\CoinConst;
 use App\Http\Controllers\Controller;
 use App\logic\ActivityLogic;
-use App\logic\QrcodeLogic;
+use App\logic\ArticleLogic;
 use App\logic\TickerLogic;
 use App\model\Ticker;
 use Illuminate\Support\Facades\Cache;
+use simple_html_dom;
 
 class WebApiController extends Controller
 {
     public $activity_logic;
-    public $qrcode_logic;
     public $ticker_logic;
+    public $article_logic;
 
     public function __construct()
     {
         $this->activity_logic = new ActivityLogic();
-        $this->qrcode_logic = new QrcodeLogic();
         $this->ticker_logic = new TickerLogic();
+        $this->article_logic = new ArticleLogic();
     }
 
     public function activity()
@@ -60,5 +61,10 @@ class WebApiController extends Controller
     public function volume()
     {
         return response()->result($this->ticker_logic->getVolume());
+    }
+
+    public function articles()
+    {
+        return response()->result($this->article_logic->getListForWeb());
     }
 }

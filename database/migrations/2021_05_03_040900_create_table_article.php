@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQrcodeTable extends Migration
+class CreateTableArticle extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,12 @@ class CreateQrcodeTable extends Migration
      */
     public function up()
     {
-        Schema::create('qrcode', function(Blueprint $table)
+        Schema::create('article', function(Blueprint $table)
         {
             $table->increments('id');
             $table->string('title')->default("")->comment("标题");
-            $table->string('imgurl')->default("")->comment("二维码url");
-            $table->tinyInteger('status')->default(1)->comment("状态 1无效 2有效");
-            $table->integer("opertor_id")->default(0)->comment("操作人id");
+            $table->string('slug')->default("")->comment("简述");
+            $table->string('release_time')->default("")->comment("发布时间");
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateQrcodeTable extends Migration
      */
     public function down()
     {
-        Schema::drop('qrcode');
+        Schema::drop('article');
     }
 }

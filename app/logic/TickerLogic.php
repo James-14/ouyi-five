@@ -13,7 +13,7 @@ class TickerLogic
     {
         $result = [];
         foreach (CoinConst::$coin_types as $type) {
-            $temp = Ticker::where('instrument_id', $type."-".CoinConst::COIN_SUFFIX)->first();
+            $temp = Ticker::where('instrument_id', $type.CoinConst::COIN_SUFFIX)->first();
             if (empty($temp)) {
                 continue;
             }
