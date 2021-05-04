@@ -64,8 +64,15 @@ class ArticleConsole extends Command
             if (empty($title) || empty($desc) || empty($time)) {
                 continue;
             }
-
-            Article::firstOrCreate([
+            //根据标题和简介、创建时间判断是否存在
+            $dao = Article::where('title', $title)
+                ->where('slug', $desc)
+                ->where('release_time', $time)
+                ->first();
+            if ($dao && $dao['id'] > 0) {
+                continue;
+            }
+            Article::insert([
                 'title' => $title,
                 'slug' => $desc,
                 'release_time' => $time,

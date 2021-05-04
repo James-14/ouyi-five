@@ -11,6 +11,7 @@ use App\logic\ActivityLogic;
 use App\logic\ArticleLogic;
 use App\logic\TickerLogic;
 use App\model\Ticker;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use simple_html_dom;
 
@@ -63,8 +64,24 @@ class WebApiController extends Controller
         return response()->result($this->ticker_logic->getVolume());
     }
 
-    public function articles()
+    public function articles(Request $request)
     {
-        return response()->result($this->article_logic->getListForWeb());
+        $time = isset($request['time'])?$request['time']:'';
+
+        $list = $this->article_logic->getListForWeb();
+        $new = 0;
+        if($time != '') {
+            foreach ($list as $v) {
+                if ($time <= $v['release_time']) {
+                    $new++;
+                }
+            }
+        }
+
+        $result = [
+            'list' => $list,
+            'new' => $new,
+        ];
+        return response()->result($result);
     }
 }
