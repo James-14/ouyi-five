@@ -77,11 +77,13 @@ class WebApiController extends Controller
                 }
             }
         }
+        $datalist = collect($list)->sortByDesc('release_time');
 
         $result = [
-            'list' => $list,
+            'list' => array_values($datalist->toArray()),
             'new' => $new,
         ];
+
         return response()->result($result);
     }
 }

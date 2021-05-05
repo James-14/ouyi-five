@@ -12,6 +12,12 @@ class ArticleLogic
 
     public function getListForWeb()
     {
-        return Article::where('created_at', '<=', date("Y-m-d H:i:s"))->limit(40)->orderBy("release_time", "desc")->get();
+        return Article::where('created_at', '<=', date("Y-m-d H:i:s"))
+            ->where('created_at', '>', date("Y-m-d 00:00:00"))
+            ->limit(40)
+            ->orderBy('id', 'desc')
+            ->orderBy("release_time", "desc")
+            ->get()
+            ->toArray();
     }
 }
