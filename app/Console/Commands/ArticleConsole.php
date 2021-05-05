@@ -44,6 +44,12 @@ class ArticleConsole extends Command
         $html = new simple_html_dom();
         $html->load($str);
         $divs = $html->find('.date');
+
+        $time = trim(reset($divs[0]->children[0]->nodes[0]->_));
+        if ($time !='' && $time != date("Y年m月d日")){
+            return;
+        }
+
         $ul = $divs[0]->next_sibling();
         foreach ($ul->children as $v) {
             $li_children = $v->children;
@@ -54,7 +60,6 @@ class ArticleConsole extends Command
             $a_obj = $li_children[0]->find('a');
             $title = $a_obj[0]->plaintext;
 
-            $p_obj = $li_children[1]->find('p');
             $desc = trim(reset($li_children[1]->nodes[0]->_));
 
             //div>.info>.source
