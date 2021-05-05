@@ -19,19 +19,24 @@ class ActivityController extends Controller
 
     public function index()
     {
-        return response()->json($this->activity_logic->getListForWeb());
+        return response()->result($this->activity_logic->getListForWeb());
     }
 
-    public function create(array $data)
+    public function create(Request $request)
     {
-/*
- * User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+        $this->validate($request,[
+            'title' => 'required|max:50',
+            'imgurl' => 'required|max:255',
+            'status' => 'required',
         ]);
- */
-
+        $model = $this->activity_logic->createData(
+            $request['title'],
+            $request['imgurl'],
+            $request['status'],
+            $request['orderly'],
+            $request['jumplink']
+        );
+        return response()->result(['id' => $model['id']]);
 
     }
 }

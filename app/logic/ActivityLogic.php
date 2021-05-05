@@ -16,4 +16,15 @@ class ActivityLogic
     {
         return Activity::where('status', '=', self::STATUS_YES)->orderBy("orderly", "asc")->get();
     }
+
+    public function createData($title, $imgurl, $status, $orderly, $jumplink)
+    {
+        return Activity::create([
+            'title' => $title,
+            'imgurl' => $imgurl,
+            'status' => $status,
+            'orderly' => $orderly,
+            'jumplink' => $jumplink,
+        ]);
+    }
 }

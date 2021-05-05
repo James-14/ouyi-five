@@ -16,10 +16,14 @@ Route::get('/',function(){
 });
 
 //后端路由群组
-Route::group(array('prefix'=>'admin','namespace'=>'Admin','middleware' =>'auth'),function(){
-    Route::get('/qrcode', 'QrcodeController@index');
+Route::group(array('prefix'=>'admin','namespace'=>'Admin'),function(){
 
+    //活动
     Route::get('/activity', 'ActivityController@index');
+    Route::post('/activity/create', 'ActivityController@create');
+
+
+    Route::post('/upload', 'CommonController@upload');
 });
 
 

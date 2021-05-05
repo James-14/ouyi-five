@@ -72,7 +72,7 @@ class WebApiController extends Controller
         $new = 0;
         if($time != '') {
             foreach ($list as $v) {
-                if ($time <= $v['release_time']) {
+                if ($time < $v['release_time']) {
                     $new++;
                 }
             }
