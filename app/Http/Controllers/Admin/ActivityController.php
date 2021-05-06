@@ -17,19 +17,20 @@ class ActivityController extends Controller
         $this->activity_logic = new ActivityLogic();
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return response()->result($this->activity_logic->getListForWeb());
+        return response()->result($this->activity_logic->getListForWeb($request));
     }
 
-    public function create(Request $request)
+    public function save(Request $request)
     {
         $this->validate($request,[
             'title' => 'required|max:50',
             'imgurl' => 'required|max:255',
             'status' => 'required',
         ]);
-        $model = $this->activity_logic->createData(
+        $model = $this->activity_logic->saveData(
+            $request['id'],
             $request['title'],
             $request['imgurl'],
             $request['status'],
@@ -37,6 +38,14 @@ class ActivityController extends Controller
             $request['jumplink']
         );
         return response()->result(['id' => $model['id']]);
+    }
 
+    public function delActivity(Request $request)
+    {
+        $this->validate($request,[
+            'id' => 'required',
+        ]);
+        $res = $this->activity_logic->delData($request['id']);
+        return response()->result(['res' => $res]);
     }
 }

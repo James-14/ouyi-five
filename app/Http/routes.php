@@ -19,8 +19,12 @@ Route::get('/',function(){
 Route::group(array('prefix'=>'admin','namespace'=>'Admin'),function(){
 
     //活动
+    //列表
     Route::get('/activity', 'ActivityController@index');
-    Route::post('/activity/create', 'ActivityController@create');
+    //删除
+    Route::get('/activity/del', 'ActivityController@delActivity');
+    //保存
+    Route::post('/activity/save', 'ActivityController@save');
 
 
     Route::post('/upload', 'CommonController@upload');

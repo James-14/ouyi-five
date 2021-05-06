@@ -66,10 +66,10 @@ class TickerConsole extends Command
             }
 
             //计算幅度
-            $up_down = ($value['open_utc8'] - $value['last']) / $value['open_utc8'] ;
+            $up_down = ($value['last'] - $value['open_utc8']) / $value['open_utc8'] ;
             $dao = Ticker::where('instrument_id', $value['instrument_id'])->first();
             if (!$dao['id']) {
-                $dao = Ticker::insert([///////////
+                $dao = Ticker::insert([
                     'instrument_id' => $value['instrument_id'],
                     'last' => $value['last'],
                     'last_qty' => $value['last_qty'],
