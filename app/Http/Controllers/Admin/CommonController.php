@@ -49,7 +49,7 @@ class CommonController extends Controller
             'downloadUrl' => 'required|max:5',
         ]);
 
-        Cache::forever(CacheConst::QRCODE_URL_KEY, $request['qrcodeUrl'],);
+        Cache::forever(CacheConst::QRCODE_URL_KEY, $request['qrcodeUrl']);
        Cache::forever(CacheConst::API_JUMP_URL, $request['downloadUrl']);
         
         return response()->ok();
