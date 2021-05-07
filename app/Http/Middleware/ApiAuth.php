@@ -29,7 +29,7 @@ class ApiAuth
         $cache_token = Cache::get(CacheConst::API_TOKEN_KEY);
 
         if (empty($api_token) || empty($cache_token) || ($api_token != $cache_token)) {
-            return response()->json(['code' => 401,'msg' => '未设置token']);
+            return response()->result(['ecode' => 10001,'emsg' => 'token验证失败']);
         }
 
         return $next($request);
