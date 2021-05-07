@@ -11,9 +11,24 @@ class ActivityLogic
     const STATUS_NO = 1;
     const STATUS_YES = 2;
 
-    public function getListForWeb($request)
+    public function getListForWeb()
     {
         $sql = Activity::where('status', '=', self::STATUS_YES);
+        $list = $sql->orderBy("orderly", "asc")->get();
+        return $list;
+    }
+
+    public function getListForAdmin($request)
+    {
+        $sql=Activity::where('jumplink','!=','');
+        if ($request['status']) {
+            $sql=$sql->where('status', '=', $request['status']);
+        }
+        if ($request['title']) {
+            $sql=$sql->where('title', 'like', '%'.$request['title'].'%');
+        }
+        $count = $sql->count();
+
         $pageIndex = 1;
         if ($request['pageIndex']) {
             $pageIndex = $request['pageIndex'];
@@ -26,8 +41,7 @@ class ActivityLogic
         if ($skip > 0) {
             $sql = $sql->offset($skip);
         }
-        $list = $sql->limit($pageSize)->orderBy("orderly", "asc")->get();
-        $count = $sql->count();
+        $list = $sql->limit($pageSize)->orderBy("orderly", "asc")->get();        
         return ['list' => $list, 'count' => $count, 'pageIndex' => $pageIndex, 'pageSize' => $pageSize];
     }
 

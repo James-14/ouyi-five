@@ -19,7 +19,7 @@ class ActivityController extends Controller
 
     public function index(Request $request)
     {
-        return response()->result($this->activity_logic->getListForWeb($request));
+        return response()->result($this->activity_logic->getListForAdmin($request));
     }
 
     public function save(Request $request)
