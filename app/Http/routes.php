@@ -26,8 +26,17 @@ Route::group(array('prefix'=>'admin','namespace'=>'Admin'),function(){
     //保存
     Route::post('/activity/save', 'ActivityController@save');
 
-
+    //文件上传
     Route::post('/upload', 'CommonController@upload');
+    
+    //广告信息
+    Route::get('/advertising', 'CommonController@advertising');
+
+    //广告信息
+    Route::post('/saveAdvertising', 'CommonController@modifyAdvertising');
+
+
+    
 });
 
 
