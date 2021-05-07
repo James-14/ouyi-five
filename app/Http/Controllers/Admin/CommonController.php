@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\logic\ActivityLogic;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Enums\CacheConst;
+use Illuminate\Support\Facades\Cache;
 
 class CommonController extends Controller
 {
@@ -29,8 +29,32 @@ class CommonController extends Controller
         }else{
             dd('图片上传失败请重试.');
         }
-
-
     }
+
+    public function advertising(Request $request){
+        //        Cache::forever(CacheConst::QRCODE_URL_KEY, "https://www.baidu.com/img/flexible/logo/pc/result.png");
+//        Cache::forever(CacheConst::API_JUMP_URL, 'https://www.baidu.com');
+        $qrCodeUrl=Cache::get(CacheConst::QRCODE_URL_KEY);
+        $downloadUrl=Cache::get(CacheConst::API_JUMP_URL);
+        $res = [
+            'qrcode' => $qrCodeUrl==null?'':$qrCodeUrl,
+            'jump_url' => $downloadUrl==null?'':$downloadUrl,
+        ];
+        return response()->result($res);
+    }
+
+    public function modifyAdvertising(Request $request){
+        $this->validate($request,[
+            'qrcodeUrl' => 'required|max:5',
+            'downloadUrl' => 'required|max:5',
+        ]);
+
+        Cache::forever(CacheConst::QRCODE_URL_KEY, $request['qrcodeUrl']);
+       Cache::forever(CacheConst::API_JUMP_URL, $request['downloadUrl']);
+        
+        return response()->ok();
+    }
+
+
 
 }
