@@ -16,7 +16,7 @@ Route::get('/',function(){
 });
 
 //获取token
-Route::get('/getApiToken', 'LoginController@getApiToken');
+Route::get('/admin/getApiToken', 'LoginController@getApiToken');
 
 //后端路由群组
 Route::group(array('prefix'=>'admin','namespace'=>'Admin', 'middleware' => 'auth.api'),function(){

@@ -4,8 +4,12 @@ namespace App\Enums;
 
 class CacheConst
 {
-    //文件缓存时间，单位：分钟
-    const CACHE_EPX_TIME = 10;
+    //短时间缓存5分钟
+    const EXPIRE_TIME_SHORT = 300;
+    //稍长时间缓存2小时
+    const EXPIRE_TIME_LONG = 7200;
+    // 正常缓存时间1天
+    const EXPIRE_TIME_NORMAL = 86400;
 
     //二维码图片地址
     const QRCODE_URL_KEY = "qrcode_url";

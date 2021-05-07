@@ -19,7 +19,6 @@ class ApiAuth
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        dd($request);
         $api_token = $request['api_token']?$request['api_token']:'';
 
         if ($api_token == 'ignore_sign') {

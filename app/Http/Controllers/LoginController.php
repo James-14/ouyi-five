@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\CacheConst;
 use App\Enums\UserConst;
-use App\Http\Controllers\Controller;
-use App\logic\ActivityLogic;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use Illuminate\Support\Facades\Cache;
 
 class LoginController extends Controller
 {
@@ -19,6 +17,9 @@ class LoginController extends Controller
         }
         //生成token
         $api_token = md5(uniqid(microtime(true), true));
+
+        //缓存token
+        Cache::put(CacheConst::API_TOKEN_KEY, $api_token, CacheConst::EXPIRE_TIME_LONG);
         return response()->result(['api_token' => $api_token]);
     }
 }
