@@ -16,10 +16,16 @@ Route::get('/',function(){
 });
 
 //获取token
-Route::get('/admin/getApiToken', 'LoginController@getApiToken');
+Route::post('/admin/getApiToken', 'LoginController@getApiToken');
+
+//退出
+Route::post('/admin/logOut', 'LoginController@logOut');
+
 
 //后端路由群组
-Route::group(array('prefix'=>'admin','namespace'=>'Admin', 'middleware' => 'auth.api'),function(){
+Route::group(array('prefix'=>'admin','namespace'=>'Admin', 'middleware' => 'auth.api'),
+// Route::group(array('prefix'=>'admin','namespace'=>'Admin'),
+    function(){
 
     //活动
     //列表

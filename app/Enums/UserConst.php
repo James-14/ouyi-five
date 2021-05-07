@@ -2,6 +2,6 @@
 namespace App\Enums;
 
 class UserConst {
-    const ADMIN_USER = 'admin';
-    const ADMIN_PWD  = 'pwd';
+    const ADMIN_USER = 'admin*2021&OY';
+    const ADMIN_PWD  = 'PassW0rd12#45@2021';
 }

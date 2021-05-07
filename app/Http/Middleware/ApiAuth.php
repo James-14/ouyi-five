@@ -19,7 +19,7 @@ class ApiAuth
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        $api_token = $request['api_token']?$request['api_token']:'';
+        $api_token = $request->header('token')?$request->header('token'):'';
 
         if ($api_token == 'ignore_sign') {
             return $next($request);
@@ -29,8 +29,9 @@ class ApiAuth
         $cache_token = Cache::get(CacheConst::API_TOKEN_KEY);
 
         if (empty($api_token) || empty($cache_token) || ($api_token != $cache_token)) {
-            return response()->result(['ecode' => 10001,'emsg' => 'token验证失败']);
+            return response()->error('10001','token验证失败',200);
         }
+
 
         return $next($request);
     }

@@ -38,15 +38,15 @@ class CommonController extends Controller
         $downloadUrl=Cache::get(CacheConst::API_JUMP_URL);
         $res = [
             'qrcode' => $qrCodeUrl==null?'':$qrCodeUrl,
-            'jump_url' => $downloadUrl==null?'':$downloadUrl,
+            'jumpUrl' => $downloadUrl==null?'':$downloadUrl,
         ];
         return response()->result($res);
     }
 
     public function modifyAdvertising(Request $request){
         $this->validate($request,[
-            'qrcodeUrl' => 'required|max:5',
-            'downloadUrl' => 'required|max:5',
+            'qrcodeUrl' => 'required',
+            'downloadUrl' => 'required',
         ]);
 
         Cache::forever(CacheConst::QRCODE_URL_KEY, $request['qrcodeUrl']);

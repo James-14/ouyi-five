@@ -70,8 +70,6 @@ class ActivityLogic
 
     public function delData($id)
     {
-        return Activity::where('id', $id)->update([
-            'status' => self::STATUS_NO
-        ]);
+        return Activity::where('id', $id)->delete();
     }
 }
