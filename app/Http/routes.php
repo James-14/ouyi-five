@@ -15,8 +15,11 @@ Route::get('/',function(){
     return 'hello,world!' ;
 });
 
+//获取token
+Route::get('/getApiToken', 'LoginController@getApiToken');
+
 //后端路由群组
-Route::group(array('prefix'=>'admin','namespace'=>'Admin'),function(){
+Route::group(array('prefix'=>'admin','namespace'=>'Admin', 'middleware' => 'auth.api'),function(){
 
     //活动
     //列表
@@ -31,7 +34,7 @@ Route::group(array('prefix'=>'admin','namespace'=>'Admin'),function(){
 });
 
 
-Route::auth();
+//Route::auth();
 
 //web接口群组
 Route::group(array('prefix'=>'api','namespace'=>'Web'),function(){

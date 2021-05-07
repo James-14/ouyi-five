@@ -12,4 +12,7 @@ class CacheConst
 
     //跳转地址
     const API_JUMP_URL = "api_jump_url";
+
+    //api token key
+    const API_TOKEN_KEY = "api_token";
 }
